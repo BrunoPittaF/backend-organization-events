@@ -1,4 +1,6 @@
-import {Request as ExpressRequest } from 'express';
+import {Request } from 'express';
+
+export {}
 
 export interface IParticipants {
   id: string,
@@ -17,13 +19,10 @@ export interface IEvents {
 export interface IUserAccount {
   name: string,
   email: string,
-  password?: string,
+  password: string,
   number: string,
-  id: string,
-  events: IEvents[]
+  id?: string,
 }
-
-
 
 declare global {
   namespace Express {
