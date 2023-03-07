@@ -12,14 +12,14 @@ router.post('/user', async (req, res) => {
 
   try {
     
-    // const user = await User.create({
-    //   email: email,
-    //   name: name,
-    //   number: number,
-    //   password: password,
-    //   id: uuidv4()
-    // });
-    res.status(201).json('caio'); 
+    const user = await User.create({
+      email: email,
+      name: name,
+      number: number,
+      password: password,
+      id: uuidv4()
+    });
+    res.status(201).json(user); 
   } catch (error) {
     res.status(500).send('Server error');
   } finally {
