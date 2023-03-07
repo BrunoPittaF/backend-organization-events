@@ -1,6 +1,8 @@
-import { Model, Column, Table, PrimaryKey, DataType } from 'sequelize-typescript';
+import { Model, Column, Table, PrimaryKey, DataType, Sequelize } from 'sequelize-typescript';
+import { DataTypes } from 'sequelize'
 import { sequelize } from '../db/db';
 
+// const sequelize = new Sequelize('mysql::memory:');
 
  interface IUserAccount {
   name: string,
@@ -10,7 +12,7 @@ import { sequelize } from '../db/db';
   id?: string,
  }
 
-@Table({tableName: 'user'})
+@Table({tableName: 'users'})
 export class User extends Model<IUserAccount> {
   @Column({
     allowNull: false,
@@ -44,41 +46,34 @@ export class User extends Model<IUserAccount> {
 }
 
 
-User.init({
-  name: {
-    type: DataType.STRING,
-    allowNull: false,
-  },
-  email: {
-    type: DataType.STRING,
-    unique: true,
-    allowNull: false,
-  },
-  id: {
-    type: DataType.INTEGER,
-    primaryKey: true,
-    autoIncrement: true,
-    unique: true,
-  },
-  number: {
-    type: DataType.STRING,
-  },
-  password: {
-    type: DataType.STRING,
-    allowNull: false,
-  },
-}, 
-  {
-    sequelize,
-    modelName: 'user'
-  }
-)
+// User.init({
+//   name: {
+//     type: DataType.STRING,
+//     allowNull: false,
+//   },
+//   email: {
+//     type: DataType.STRING,
+//     unique: true,
+//     allowNull: false,
+//   },
+//   id: {
+//     type: DataType.INTEGER,
+//     primaryKey: true,
+//     autoIncrement: true,
+//     unique: true,
+//   },
+//   number: {
+//     type: DataType.STRING,
+//   },
+//   password: {
+//     type: DataType.STRING,
+//     allowNull: false,
+//   },
+// }, 
+//   {
+//     modelName: 'user',
+//     sequelize: sequelize
+//   }
+// )
 
 
-User.sync({ force: true })
-  .then(() => {
-    console.log('User table created successfully!');
-  })
-  .catch((err) => {
-    console.error('Error creating user table:', err);
-  });

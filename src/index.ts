@@ -1,7 +1,5 @@
-import express, { NextFunction, Request, Response } from 'express';
-import { IUserAccount } from './types/interface';
+import express from 'express';
 import { router as usersRouter } from './routes/users';
-import { sequelize } from './db/db';
 
 const app = express()
 app.use(express.json());

@@ -2,7 +2,7 @@ import { Sequelize } from 'sequelize-typescript';
 import { User } from '../models/User';
 
 
-export const sequelize = new Sequelize({
+const sequelize = new Sequelize({
   host: 'localhost',
   port: 3006,
   database: 'mydb',
@@ -12,4 +12,13 @@ export const sequelize = new Sequelize({
   models: [User]
 });
 
-sequelize.sync();
+sequelize.sync({ force: true }).then(() => {
+  console.log('Database synchronized');
+}).catch((err) => {
+  console.error('Error synchronizing database:', err);
+});
+
+export { sequelize }; 
+
+
+
